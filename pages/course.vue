@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div class="prose p-12 bg-white rounded-md w-[65ch]">
+      <div class="prose p-12 bg-white rounded-md min-w-[70ch]">
         <NuxtPage />
       </div>
     </div>
