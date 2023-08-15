@@ -16,10 +16,7 @@
         </p>
         <p>
           Go to the
-          <a
-            class="hover:cursor-pointer"
-            @click="handleError"
-          >
+          <a class="hover:cursor-pointer" @click="handleError">
             first lesson.
           </a>
         </p>
@@ -33,7 +30,7 @@ const error = useError();
 const handleError = () => {
   clearError({
     redirect:
-      '/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3'
+      "/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3",
   });
 };
 </script>

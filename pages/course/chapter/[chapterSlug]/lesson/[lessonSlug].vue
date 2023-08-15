@@ -20,10 +20,7 @@
         Download Video
       </NuxtLink>
     </div>
-    <VideoPlayer
-      v-if="lesson.videoId"
-      :videoId="lesson.videoId"
-    />
+    <VideoPlayer v-if="lesson.videoId" :videoId="lesson.videoId" />
     <p>{{ lesson.text }}</p>
     <LessonCompleteButton
       :model-value="isLessonComplete"
@@ -46,7 +43,7 @@ definePageMeta({
       return abortNavigation(
         createError({
           statusCode: 404,
-          message: 'Chapter not found',
+          message: "Chapter not found",
         })
       );
     }
@@ -57,7 +54,7 @@ definePageMeta({
       return abortNavigation(
         createError({
           statusCode: 404,
-          message: 'Lesson not found',
+          message: "Lesson not found",
         })
       );
     }
@@ -84,30 +81,23 @@ useHead({
   title,
 });
 
-const progress = useLocalStorage('progress', []);
+const progress = useLocalStorage("progress", []);
 
 const isLessonComplete = computed(() => {
   if (!progress.value[chapter.value.number - 1]) {
     return false;
   }
-  if (
-    !progress.value[chapter.value.number - 1][
-      lesson.value.number - 1
-    ]
-  ) {
+  if (!progress.value[chapter.value.number - 1][lesson.value.number - 1]) {
     return false;
   }
-  return progress.value[chapter.value.number - 1][
-    lesson.value.number - 1
-  ];
+  return progress.value[chapter.value.number - 1][lesson.value.number - 1];
 });
 
 const toggleComplete = () => {
   if (!progress.value[chapter.value.number - 1]) {
     progress.value[chapter.value.number - 1] = [];
   }
-  progress.value[chapter.value.number - 1][
-    lesson.value.number - 1
-  ] = !isLessonComplete.value;
+  progress.value[chapter.value.number - 1][lesson.value.number - 1] =
+    !isLessonComplete.value;
 };
 </script>
