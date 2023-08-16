@@ -7,7 +7,7 @@ module.exports = {
   extends: ["@nuxtjs/eslint-config", "plugin:prettier/recommended"],
   plugins: ["vue"],
   rules: {
-    "no-undef": "off",
+    "no-undef": "warn",
   },
   overrides: [
     {
