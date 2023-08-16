@@ -15,9 +15,9 @@
       >
         <h3>Chapters</h3>
         <div
-          class="space-y-1 mb-4 flex flex-col"
           v-for="chapter in chapters"
           :key="chapter.slug"
+          class="space-y-1 mb-4 flex flex-col"
         >
           <h4>{{ chapter.title }}</h4>
           <NuxtLink
@@ -64,7 +64,7 @@ const { chapters } = useCourse();
 
 const resetError = async (error) => {
   await navigateTo(
-    "/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3"
+    "/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3",
   );
   error.value = null;
 };
