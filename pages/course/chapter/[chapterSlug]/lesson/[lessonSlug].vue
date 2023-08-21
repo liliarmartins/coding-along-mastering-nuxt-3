@@ -32,14 +32,18 @@
 <script setup>
 const course = useCourse();
 const route = useRoute();
+const { chapterSlug, lessonSlug } = route.params;
+const lesson = await useLesson(chapterSlug, lessonSlug);
 
 definePageMeta({
   middleware: [
     function ({ params }, from) {
       const course = useCourse();
+
       const chapter = course.chapters.find(
         (chapter) => chapter.slug === params.chapterSlug,
       );
+
       if (!chapter) {
         return abortNavigation(
           createError({
@@ -48,9 +52,11 @@ definePageMeta({
           }),
         );
       }
+
       const lesson = chapter.lessons.find(
         (lesson) => lesson.slug === params.lessonSlug,
       );
+
       if (!lesson) {
         return abortNavigation(
           createError({
@@ -70,16 +76,9 @@ const chapter = computed(() => {
   );
 });
 
-const lesson = computed(() => {
-  return chapter.value.lessons.find(
-    (lesson) => lesson.slug === route.params.lessonSlug,
-  );
-});
-
 const title = computed(() => {
   return `${lesson.value.title} - ${course.title}`;
 });
-
 useHead({
   title,
 });
@@ -90,9 +89,11 @@ const isLessonComplete = computed(() => {
   if (!progress.value[chapter.value.number - 1]) {
     return false;
   }
+
   if (!progress.value[chapter.value.number - 1][lesson.value.number - 1]) {
     return false;
   }
+
   return progress.value[chapter.value.number - 1][lesson.value.number - 1];
 });
 
@@ -100,6 +101,7 @@ const toggleComplete = () => {
   if (!progress.value[chapter.value.number - 1]) {
     progress.value[chapter.value.number - 1] = [];
   }
+
   progress.value[chapter.value.number - 1][lesson.value.number - 1] =
     !isLessonComplete.value;
 };
