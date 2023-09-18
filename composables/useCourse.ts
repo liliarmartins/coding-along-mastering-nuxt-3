@@ -1,4 +1,3 @@
-import { CourseMeta } from "~~/types/course";
+import { CourseOutline } from "~~/server/api/course/meta.get";
 
-export default async () =>
-  await useFetchWithCache<CourseMeta>("/api/course/meta");
+export default async () => useFetchWithCache<CourseOutline>("/api/course/meta");
